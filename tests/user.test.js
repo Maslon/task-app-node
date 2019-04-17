@@ -105,3 +105,35 @@ test('Should not update invalid user fileds', async () => {
 		})
 		.expect(400);
 });
+
+test('Should not sign up with invalid name/email/pass', async () => {
+	await request(app)
+		.post('/users')
+		.send({
+			name: 5,
+			email: 'brapec',
+			password: 'klopos'
+		})
+		.expect(400);
+});
+
+test('Should not update user if unauthenticated', async () => {
+	await request(app)
+		.patch('/users/me')
+		.send({
+			name: 'Foker'
+		})
+		.expect(401);
+});
+
+test('Should not update user with invalid name/email/password', async () => {
+	await request(app)
+		.patch('/users/me')
+		.set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+		.send({
+			name: 'Foker',
+			email: 'test@test.com',
+			passowrd: 'faw'
+		})
+		.expect(400);
+});

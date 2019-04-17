@@ -32,13 +32,13 @@ const userTwo = {
 const taskOne = {
 	_id: new mongoose.Types.ObjectId(),
 	description: 'First task',
-	completed: false,
+	completed: true,
 	owner: userOneId
 };
 const taskTwo = {
 	_id: new mongoose.Types.ObjectId(),
 	description: 'Second task',
-	completed: true,
+	completed: false,
 	owner: userOneId
 };
 const taskThree = {
@@ -63,5 +63,6 @@ module.exports = {
 	userOne,
 	setUpDatabase,
 	taskOne,
-	userTwo
+	userTwo,
+	taskThree
 };
